@@ -3,6 +3,7 @@
 namespace BookmarkManager;
 
 use BookmarkManager\Widgets\WidgetLoader;
+use BookmarkManager\PostTypes\BookmarksPostType;
 
 class BookmarkManager
 {

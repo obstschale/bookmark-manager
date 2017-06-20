@@ -8,12 +8,12 @@ class Core extends BookmarkManager {
     if(!is_admin() && !$this->is_ajax()) {
 
       // Add page, post type and parent classes to <body> tag for selector targeting
-      add_filter( 'body_class', array(&$this, 'add_body_classes') );
+      add_filter( 'body_class', [ $this, 'add_body_classes' ] );
 
     }
 
     // Remove Emoji code from header
-    if(!$this->is_ajax()) add_filter( 'init', array(&$this, 'disable_wp_emojicons') );
+    if(!$this->is_ajax()) add_filter( 'init', [ $this, 'disable_wp_emojicons' ] );
 
   }
 

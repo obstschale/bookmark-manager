@@ -40,7 +40,8 @@
     "htmlburger/carbon-fields": "1.5",
     "jjgrainger/posttypes": "*",
     "jashkenas/underscore": ">=1.8.0",
-    "composer/installers": "*"
+    "composer/installers": "*",
+    "wpupdatephp/wp-update-php": "dev-master"
   },
   "extra":{
     "installer-paths":{

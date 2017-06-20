@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce53b5914992838dded8451874460fbe",
+    "content-hash": "2b26253a7108df2ac03da7b256a7b426",
     "packages": [
         {
             "name": "composer/installers",
@@ -334,17 +334,49 @@
                 "composer-installer",
                 "composer-plugin"
             ],
-            "time": "2016-05-25T08:26:02+00:00"
+            "time": "2016-05-25 08:26:02"
+        },
+        {
+            "name": "wpupdatephp/wp-update-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WPupdatePHP/wp-update-php.git",
+                "reference": "6c80444de04d8c688e3b42e164e40527b487a357"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WPupdatePHP/wp-update-php/zipball/6c80444de04d8c688e3b42e164e40527b487a357",
+                "reference": "6c80444de04d8c688e3b42e164e40527b487a357",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Library to be bundled with WordPress plugins to enforce users to upgrade to PHP 5.4 hosting",
+            "time": "2017-03-08 09:50:34"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "wpupdatephp/wp-update-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.2"
+        "php": ">=5.4"
     },
     "platform-dev": []
 }

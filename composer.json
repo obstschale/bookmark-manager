@@ -1,0 +1,61 @@
+{
+  "name": "obstschale/bookmark-manager",
+  "type": "wordpress-plugin",
+  "description": "Let WordPress handle your bookmarks",
+  "keywords": ["wordpress", "plugin", "bookmarks", "manager", "social"],
+  "homepage": "https://github.com/obstschale/bookmark-manager",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Hans-Helge Buerger",
+      "homepage": "https://hanshelgebuerger.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/obstschale/bookmark-manager/issues/",
+    "wiki": "https://github.com/obstschale/bookmark-manager/wiki/",
+    "source": "https://github.com/obstschale/bookmark-manager/"
+  },
+  "repositories": [
+      {
+          "type": "package",
+          "package": {
+            "name": "jashkenas/underscore",
+            "version": "1.8.3",
+            "dist": {
+              "type": "zip",
+              "url": "https://github.com/jashkenas/underscore/archive/1.8.3.zip",
+              "reference": "master"
+            },
+            "autoload": {
+                "classmap": ["."]
+            }
+        }
+      }
+  ],
+  "require": {
+    "php": ">=5.3.2",
+    "mnsami/composer-custom-directory-installer": "*",
+    "htmlburger/carbon-fields": "1.5",
+    "jjgrainger/posttypes": "*",
+    "jashkenas/underscore": ">=1.8.0",
+    "composer/installers": "*"
+  },
+  "extra":{
+    "installer-paths":{
+      "./vendor/carbon-fields": ["htmlburger/carbon-fields"]
+    }
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "BookmarkManager\\": "app/"
+    }
+  },
+  "scripts": {
+      "pre-autoload-dump": [
+        "rm -rf vendor/carbon-fields/.git*; rm -rf vendor/composer/installers/.git*; rm -rf vendor/jjgrainger/posttypes/.git*"
+      ]
+  }
+}

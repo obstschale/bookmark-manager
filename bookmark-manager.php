@@ -9,6 +9,8 @@
  * Author URI:        https://hanshelgebuerger.de
  * License:           GPL-2.0
  * License URI:       https://opensource.org/licenses/GPL-2.0
+ * Text Domain:       bookmark-manager
+ * Domain Path:       /languages
  * GitHub Plugin URI: obstschale/bookmark-manager
  */
 

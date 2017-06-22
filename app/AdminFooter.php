@@ -47,7 +47,7 @@ class AdminFooter extends BookmarkManager
 
         if ( $screen->post_type === 'bookmarks' ) {
             $update_footer_text = '<span class="bookmark-manager-update-footer">' . sprintf( __( 'Bookmark Manager Version %s',
-                    self::$textdomain ), self::$settings['version'] ) . '</span>';
+                    'bookmark-manager' ), self::$version ) . '</span>';
 
             return $update_footer_text . ', WordPress ' . $default_text;
         }

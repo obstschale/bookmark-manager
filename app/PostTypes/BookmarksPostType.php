@@ -32,9 +32,9 @@ class BookmarksPostType extends BookmarkManager
         // Reference: https://github.com/jjgrainger/PostTypes
 
         $options = [
-            'supports'            => [ 'title', 'editor', 'thumbnail' ],
-            'labels'              => [
-                'menu_name' => __( 'Bookmarks', self::$textdomain ),
+            'supports'              => [ 'title', 'editor', 'thumbnail' ],
+            'labels'                => [
+                'menu_name' => __( 'Bookmarks', 'bookmark-manager' ),
             ],
             'exclude_from_search' => true,
             'publicly_queryable'  => true,
@@ -45,7 +45,7 @@ class BookmarksPostType extends BookmarkManager
         ];
 
         $labels = [
-            'featured_image' => __( 'Screenshot', self::$textdomain ),
+            'featured_image' => __( 'Screenshot', 'bookmark-manager' ),
         ];
 
         $this->cpt = new PostType( [

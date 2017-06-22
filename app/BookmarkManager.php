@@ -10,18 +10,18 @@ class BookmarkManager
 
     public static $settings;
 
-    public static $textdomain;
+    public static $version;
 
     public static $prefix;
 
 
-    function __construct($_settings)
+    function __construct( $_settings )
     {
 
         // Set text domain and option prefix
-        self::$textdomain = $_settings['textdomain'];
-        self::$prefix     = $_settings['prefix'];
-        self::$settings   = $_settings;
+        self::$settings = $_settings;
+        self::$prefix   = $_settings[ 'prefix' ];
+        self::$version  = $_settings[ 'data' ][ 'Version' ];
 
         // Enqueue scripts
         new EnqueueScripts();

@@ -46,11 +46,9 @@ if ( $updatePhp->does_it_meet_required_php_version() ) {
         'data'                => get_plugin_data( __FILE__ ),
         'path'                => realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR,
         'url'                 => plugin_dir_url( __FILE__ ),
-        'textdomain'          => 'bookmark-manager',
         'object_cache_group'  => 'bookmark_manager_cache',
         'object_cache_expire' => 72, // In hours
         'prefix'              => 'bookmark_manager_', // Change to your own unique field prefix
-        'version'             => '0.1.0', // Current Version
     ] );
 
 } else {

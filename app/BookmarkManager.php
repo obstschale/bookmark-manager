@@ -53,10 +53,10 @@ class BookmarkManager
      */
     public function is_production()
     {
-        if ( ! defined('WP_ENV')) {
+        if ( ! defined( 'WP_ENV' ) ) {
             return true;
         } else {
-            return ! in_array(WP_ENV, [ 'development', 'staging' ]);
+            return ! in_array( WP_ENV, [ 'development', 'staging' ] );
         }
     }
 
@@ -68,7 +68,7 @@ class BookmarkManager
      */
     public function is_ajax()
     {
-        return defined('DOING_AJAX') && DOING_AJAX;
+        return defined( 'DOING_AJAX' ) && DOING_AJAX;
     }
 
 
@@ -87,16 +87,16 @@ class BookmarkManager
      *
      * @return string
      */
-    public function get_script_version($script, $return_minified = false, $script_version = null)
+    public function get_script_version( $script, $return_minified = false, $script_version = null )
     {
-        $version = $script_version ?: self::$settings['data']['Version'];
-        if ($this->is_production()) {
+        $version = $script_version ?: self::$settings[ 'data' ][ 'Version' ];
+        if ( $this->is_production() ) {
             return $version;
         }
 
-        $script = $this->get_script_path($script, $return_minified);
-        if (file_exists($script)) {
-            $version = date("ymd-Gis", filemtime($script));
+        $script = $this->get_script_path( $script, $return_minified );
+        if ( file_exists( $script ) ) {
+            $version = date( "ymd-Gis", filemtime( $script ) );
         }
 
         return $version;
@@ -119,17 +119,17 @@ class BookmarkManager
      *
      * @return string The URL or path to minified or regular $script.
      */
-    public function get_script_path($script, $return_minified = false, $return_url = false)
+    public function get_script_path( $script, $return_minified = false, $return_url = false )
     {
-        $script = trim($script, '/');
-        if ($return_minified && strpos($script, '.') && $this->is_production()) {
-            $script_parts     = explode('.', $script);
-            $script_extension = end($script_parts);
-            array_pop($script_parts);
-            $script = implode('.', $script_parts) . '.min.' . $script_extension;
+        $script = trim( $script, '/' );
+        if ( $return_minified && strpos( $script, '.' ) && $this->is_production() ) {
+            $script_parts     = explode( '.', $script );
+            $script_extension = end( $script_parts );
+            array_pop( $script_parts );
+            $script = implode( '.', $script_parts ) . '.min.' . $script_extension;
         }
 
-        return self::$settings[$return_url ? 'url' : 'path'] . $script;
+        return self::$settings[ $return_url ? 'url' : 'path' ] . $script;
     }
 
 
@@ -139,9 +139,9 @@ class BookmarkManager
      * @param string $script The relative (to the plugin folder) path to the script.
      * @param        bool
      */
-    public function get_script_url($script, $return_minified = false)
+    public function get_script_url( $script, $return_minified = false )
     {
-        return $this->get_script_path($script, $return_minified, true);
+        return $this->get_script_path( $script, $return_minified, true );
     }
 
 
@@ -159,16 +159,16 @@ class BookmarkManager
      * @author Daniel <daniel (at) danielsmedegaardbuus (dot) dk>
      * @author Gabriel Sobrinho <gabriel (dot) sobrinho (at) gmail (dot) com>
      */
-    private function array_merge_recursive_distinct(array &$array1, array &$array2)
+    private function array_merge_recursive_distinct( array &$array1, array &$array2 )
     {
         // Credit: http://php.net/manual/en/function.array-merge-recursive.php#92195
         $merged = $array1;
 
-        foreach ($array2 as $key => &$value) {
-            if (is_array($value) && isset ($merged [$key]) && is_array($merged [$key])) {
-                $merged [$key] = self::array_merge_recursive_distinct($merged [$key], $value);
+        foreach ( $array2 as $key => &$value ) {
+            if ( is_array( $value ) && isset ( $merged [ $key ] ) && is_array( $merged [ $key ] ) ) {
+                $merged [ $key ] = self::array_merge_recursive_distinct( $merged [ $key ], $value );
             } else {
-                $merged [$key] = $value;
+                $merged [ $key ] = $value;
             }
         }
 

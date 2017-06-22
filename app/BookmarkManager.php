@@ -38,9 +38,6 @@ class BookmarkManager
         // Create custom widgets
         new WidgetLoader();
 
-        // Deploy shortcodes
-        //new Shortcodes;
-
         // Edit Admin Footer Text
         new AdminFooter();
 

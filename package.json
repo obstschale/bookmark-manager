@@ -1,0 +1,31 @@
+{
+  "name": "bookmark-manager",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run development",
+    "webpack": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "development": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hmr": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obstschale/bookmark-manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obstschale/bookmark-manager/issues"
+  },
+  "homepage": "https://github.com/obstschale/bookmark-manager#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "axios": "^0.16.2",
+    "cross-env": "^5.0.1",
+    "laravel-mix": "^1.0.6",
+    "vue": "^2.3.4",
+    "webpack": "^3.0.0"
+  }
+}

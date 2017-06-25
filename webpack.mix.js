@@ -12,12 +12,12 @@ let mix = require('laravel-mix');
  */
 
 /** Styles / Scripts for Bookmark Manager Backend */
-mix.js(['resources/assets/js/admin/app.js', 'resources/assets/js/admin/carbon-field.js'], 'public/js/admin.js')
-    .sass('resources/assets/scss/admin/app.scss', 'public/css/admin.css');
+mix.js(['resources/js/admin/app.js', 'resources/js/admin/carbon-field.js'], 'public/js/admin.js')
+    .sass('resources/scss/admin/app.scss', 'public/css/admin.css');
 
 /** Styles / Scripts for Bookmarklet Screen */
-mix.js('resources/assets/js/bookmarklet/app.js', 'public/js/bookmarklet.js')
-    .sass('resources/assets/scss/bookmarklet/style.scss', 'public/css/bookmarklet.css');
+mix.js('resources/js/bookmarklet/app.js', 'public/js/bookmarklet.js')
+    .sass('resources/scss/bookmarklet/style.scss', 'public/css/bookmarklet.css');
 
 /** The actual bookmarklet script */
-mix.js('resources/assets/js/bookmarklet/bookmark-this.js', 'public/js');
+mix.js('resources/js/bookmarklet/bookmark-this.js', 'public/js');

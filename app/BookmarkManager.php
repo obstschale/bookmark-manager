@@ -2,6 +2,7 @@
 
 namespace BookmarkManager;
 
+use BookmarkManager\Admin\AdminFooter;
 use BookmarkManager\Widgets\WidgetLoader;
 use BookmarkManager\PostTypes\BookmarksPostType;
 

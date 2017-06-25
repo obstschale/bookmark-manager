@@ -32,16 +32,16 @@ class BookmarksPostType extends BookmarkManager
         // Reference: https://github.com/jjgrainger/PostTypes
 
         $options = [
-            'supports'              => [ 'title', 'editor', 'thumbnail' ],
+            'supports'              => [ 'title', 'editor', 'thumbnail', 'custom-fields' ],
             'labels'                => [
                 'menu_name' => __( 'Bookmarks', 'bookmark-manager' ),
             ],
-            'exclude_from_search' => true,
-            'publicly_queryable'  => true,
-            'show_ui'             => true,
-            'show_in_nav_menus'   => false,
-            'rewrite'             => false,
-            'has_archive'         => true
+            'publicly_queryable'    => true,
+            'show_in_nav_menus'     => true,
+            'has_archive'           => true,
+            'show_in_rest'          => true,
+            'rest_base'             => 'bookmarks',
+            'rest_controller_class' => 'WP_REST_Posts_Controller',
         ];
 
         $labels = [
@@ -62,9 +62,14 @@ class BookmarksPostType extends BookmarkManager
 
     public function add_meta_fields()
     {
+
         Container::make( 'post_meta', 'Bookmark Details' )->show_on_post_type( $this->cpt->postTypeName )->add_fields( [
             Field::make( 'text', self::$prefix . 'link', 'Link' ),
         ] );
+
+        // Register meta field, making it available in REST API
+        $this->register_meta( self::$prefix . 'link' );
+
     }
 
 
@@ -78,9 +83,36 @@ class BookmarksPostType extends BookmarkManager
         ];
 
         $options = [
-            'hierarchical' => false,
+            'hierarchical'          => false,
+            'show_in_rest'          => true,
+            'rest_base'             => 'bookmark-tags',
+            'rest_controller_class' => 'WP_REST_Terms_Controller',
         ];
 
         $this->cpt->taxonomy( $name, $options );
     }
+
+
+    public function register_meta( $meta_key )
+    {
+        // The object type. For custom post types, this is 'post';
+        // for custom comment types, this is 'comment'. For user meta,
+        // this is 'user'.
+        $object_type = 'post';
+        $args1       = [ // Validate and sanitize the meta value.
+            // Note: currently (4.7) one of 'string', 'boolean', 'integer',
+            // 'number' must be used as 'type'. The default is 'string'.
+            'type'         => 'string',
+            // Shown in the schema for the meta key.
+            'description'  => 'A meta key associated with a string meta value.',
+            // Return a single value of the type.
+            'single'       => true,
+            // Show in the WP REST API response. Default: false.
+            'show_in_rest' => true,
+            'auth_callback' => function() { return true; },
+        ];
+        register_meta( $object_type, '_' . $meta_key, $args1 );
+
+    }
+
 }

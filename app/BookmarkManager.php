@@ -3,8 +3,10 @@
 namespace BookmarkManager;
 
 use BookmarkManager\Admin\AdminFooter;
+use BookmarkManager\Settings\Settings;
 use BookmarkManager\Widgets\WidgetLoader;
 use BookmarkManager\PostTypes\BookmarksPostType;
+use BookmarkManager\REST\REST_Bookmarks_Controller;
 
 class BookmarkManager
 {
@@ -15,9 +17,19 @@ class BookmarkManager
 
     public static $prefix;
 
+    protected static $registry;
 
-    function __construct( $_settings )
+
+    function __construct()
     {
+        $_settings = [
+            'data'                => get_plugin_data( __FILE__ ),
+            'path'                => realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR,
+            'url'                 => plugin_dir_url( __FILE__ ),
+            'object_cache_group'  => 'bookmark_manager_cache',
+            'object_cache_expire' => 72, // In hours
+            'prefix'              => 'bookmark_manager_', // Change to your own unique field prefix
+        ];
 
         // Set text domain and option prefix
         self::$settings = $_settings;
@@ -37,11 +49,61 @@ class BookmarkManager
         new BookmarksPostType();
 
         // Create custom widgets
-        new WidgetLoader();
+        //new WidgetLoader();
 
         // Edit Admin Footer Text
         new AdminFooter();
 
+        $rest = new REST_Bookmarks_Controller();
+        $rest->register();
+
+    }
+
+
+    private static function load_registry()
+    {
+        self::$registry = [
+            'data'                => get_plugin_data( dirname( dirname( __FILE__ ) ) . '/bookmark-manager.php' ),
+            'plugin_url'          => plugin_dir_url( dirname( __FILE__ ) . 'bookmark-manager.php' ),
+            'plugin_path'         => realpath( dirname( plugin_dir_path( __FILE__ ) ) ) . DIRECTORY_SEPARATOR,
+            'object_cache_group'  => 'bookmark_manager_cache',
+            'object_cache_expire' => 72, // In hours
+            'prefix'              => 'bookmark_manager_', // Change to your own unique field prefix
+        ];
+    }
+
+
+    public static function get_registry_value( $key )
+    {
+        if ( empty( self::$registry ) ) {
+            self::load_registry();
+        }
+
+        $value = self::$registry[ $key ] ?? false;
+
+        if ( $value !== false ) {
+            return $value;
+        }
+
+        return self::$registry['data'][ $key ] ?? false;
+    }
+
+
+    public static function plugin_path()
+    {
+        return self::get_registry_value( 'plugin_path' );
+    }
+
+
+    public static function plugin_url()
+    {
+        return self::get_registry_value( 'plugin_url' );
+    }
+
+
+    public function version()
+    {
+        return self::get_registry_value( 'Version' );
     }
 
 

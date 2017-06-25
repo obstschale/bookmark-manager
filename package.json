@@ -1,6 +1,5 @@
 {
   "name": "bookmark-manager",
-  "version": "1.0.0",
   "description": "## Description",
   "main": "index.js",
   "scripts": {

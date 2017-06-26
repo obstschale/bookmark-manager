@@ -23,7 +23,6 @@ class Bookmarklet
      */
     public function enqueue_scripts( $hook_suffix )
     {
-
         wp_localize_script( 'bookmark-manager-bookmarklet', 'bookmarkManager', array(
             'rest_endpoint' => esc_url_raw( rest_url() ),
             'rest_nonce' => wp_create_nonce( 'wp_rest' ),
@@ -90,28 +89,28 @@ class Bookmarklet
 
     private function render_login()
     { ?>
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <?php
-            $base            = get_home_url();
-            $login_css_url   = $base . '/wp-admin/css/login.css';
-            $l10n_css_url    = $base . '/wp-admin/css/l10n.css';
-            $buttons_css_url = $base . '/wp-includes/css/buttons.css';
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+    $base            = get_home_url();
+    $login_css_url   = $base . '/wp-admin/css/login.css';
+    $l10n_css_url    = $base . '/wp-admin/css/l10n.css';
+    $buttons_css_url = $base . '/wp-includes/css/buttons.css';
 
-            ?>
+    ?>
 
-            <link rel='stylesheet' id='tags-css' href='<?php echo $login_css_url; ?>' type='text/css' media='all'/>
-            <link rel='stylesheet' id='tags-css' href='<?php echo $l10n_css_url; ?>' type='text/css' media='all'/>
-            <link rel='stylesheet' id='tags-css' href='<?php echo $buttons_css_url; ?>' type='text/css' media='all'/>
+    <link rel='stylesheet' id='tags-css' href='<?php echo $login_css_url; ?>' type='text/css' media='all'/>
+    <link rel='stylesheet' id='tags-css' href='<?php echo $l10n_css_url; ?>' type='text/css' media='all'/>
+    <link rel='stylesheet' id='tags-css' href='<?php echo $buttons_css_url; ?>' type='text/css' media='all'/>
 
-        </head>
-        <body class="login login-action-login wp-core-ui  locale-de-de">
-        <div id="login">
-            <?php wp_login_form(); ?>
-        </div>
-        </body>
-        </html>
+</head>
+<body class="login login-action-login wp-core-ui  locale-de-de">
+<div id="login">
+    <?php wp_login_form(); ?>
+</div>
+</body>
+</html>
     <?php }
 
 
@@ -125,67 +124,63 @@ class Bookmarklet
 
 
     private function render_form()
-    {
+    { ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
 
-        ?>
+    /** This action is documented in wp-admin/admin-header.php */
+    do_action( 'admin_enqueue_scripts', 'bookmark-this.php' );
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <?php
+    /** This action is documented in wp-admin/admin-header.php */
+    do_action( 'admin_print_styles' );
 
-            /** This action is documented in wp-admin/admin-header.php */
-            do_action( 'admin_enqueue_scripts', 'bookmark-this.php' );
+    /** This action is documented in wp-admin/admin-header.php */
+    do_action( 'admin_print_scripts' );
 
-            /** This action is documented in wp-admin/admin-header.php */
-            do_action( 'admin_print_styles' );
+    /** This action is documented in wp-admin/admin-header.php */
+    do_action( 'admin_head' );
+    ?>
+</head>
+<body>
 
-            /** This action is documented in wp-admin/admin-header.php */
-            do_action( 'admin_print_scripts' );
+<div id="app">
 
-            /** This action is documented in wp-admin/admin-header.php */
-            do_action( 'admin_head' );
-            ?>
-        </head>
-        <body>
+    <p v-if="updateBookmarklet">
+        <?php echo sprintf( __( "You're using an old bookmarklet. Grab the new one on <a href='%s' target='_blank' titel='Settings'>Settings</a>.", 'bookmark-manager' ), admin_url( 'edit.php?post_type=bookmarks&page=crbn-settings.php' ) ); ?>
+    </p>
 
-        <div id="app">
+    <p id="flash" :class="flash" v-if="notice">{{ notice }}</p>
 
-            <p v-if="updateBookmarklet">
-                <?php echo sprintf( __( "You're using an old bookmarklet. Grab the new one on <a href='%s' target='_blank' titel='Settings'>Settings</a>.", 'bookmark-manager' ), admin_url( 'edit.php?post_type=bookmarks&page=crbn-settings.php' ) ); ?>
-            </p>
+    <label for="title"><?php _e( 'Title', 'bookmark-manager' ); ?></label>
+    <input type="text" name="title" v-model="title">
 
-            <p id="flash" :class="flash" v-if="notice">{{ notice }}</p>
+    <label for="url"><?php _e( 'URL', 'bookmark-manager' ); ?></label>
+    <input type="text" name="url" v-model="url">
 
-            <label for="title"><?php _e( 'Title', 'bookmark-manager' ); ?></label>
-            <input type="text" name="title" v-model="title">
+    <label for="description"><?php _e( 'Description', 'bookmark-manger' ); ?></label>
+    <textarea name="description" id="description" cols="30" rows="10" v-model="description"></textarea>
 
-            <label for="url"><?php _e( 'URL', 'bookmark-manager' ); ?></label>
-            <input type="text" name="url" v-model="url">
-
-            <label for="description"><?php _e( 'Description', 'bookmark-manger' ); ?></label>
-            <textarea name="description" id="description" cols="30" rows="10" v-model="description"></textarea>
-
-            <label for="tags"><?php _e( 'Tags', 'bookmark-manager' ); ?></label>
-            <input type="text" name="tags" v-model="tags">
+    <label for="tags"><?php _e( 'Tags', 'bookmark-manager' ); ?></label>
+    <input type="text" name="tags" v-model="tags">
 
 
-            <label for="private"><?php _e( 'Private', 'bookmark-manager' ); ?></label>
-            <input type="checkbox" name="private" v-model="private">
+    <label for="private"><?php _e( 'Private', 'bookmark-manager' ); ?></label>
+    <input type="checkbox" name="private" v-model="private">
 
-            <button v-on:click="saveBookmark" :disabled="notice !== ''"><?php _e( 'Save Bookmark', 'bookmark-manager' ); ?></button>
-        </div>
+    <button v-on:click="saveBookmark" :disabled="notice !== ''"><?php _e( 'Save Bookmark', 'bookmark-manager' ); ?></button>
+</div>
 
-        <?php
-        /** This action is documented in wp-admin/admin-footer.php */
-        do_action( 'admin_footer' );
+<?php
+/** This action is documented in wp-admin/admin-footer.php */
+do_action( 'admin_footer' );
 
-        /** This action is documented in wp-admin/admin-footer.php */
-        do_action( 'admin_print_footer_scripts' );
-        ?>
-        </body>
-        </html>
-        <?php
+/** This action is documented in wp-admin/admin-footer.php */
+do_action( 'admin_print_footer_scripts' );
+?>
+</body>
+</html><?php
         die();
     }
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+### v0.1.1 - 2017-06-26
+
+* [Fix] Require `wp-admin/includes/screen.php` for get_current_screen() function otherwise a fatal error occurs. #16
+
 ### v0.1.0 - 2017-06-26
 
 *First basic beta version*

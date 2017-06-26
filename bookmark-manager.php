@@ -4,7 +4,7 @@
  * Plugin Name:       Bookmark Manager
  * Plugin URI:        https://github.com/obstschale/bookmark-manager
  * Description:       Let WordPress handle your bookmarks
- * Version:           0.1.0
+ * Version:           0.1.1
  * Author:            Hans-Helge Buerger
  * Author URI:        https://hanshelgebuerger.de
  * License:           GPL-2.0

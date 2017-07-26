@@ -20,4 +20,6 @@ mix.js('resources/js/bookmarklet/app.js', 'public/js/bookmarklet.js')
     .sass('resources/scss/bookmarklet/style.scss', 'public/css/bookmarklet.css');
 
 /** The actual bookmarklet script */
-mix.js('resources/js/bookmarklet/bookmark-this.js', 'public/js');
+mix.minify('resources/js/bookmarklet/bookmark-this.js')
+    .copy('resources/js/bookmarklet/bookmark-this.min.js', 'public/js/bookmark-this.js');
+

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b26253a7108df2ac03da7b256a7b426",
+    "content-hash": "2743d9579a2df7f3695aefbb69627103",
     "packages": [
         {
             "name": "composer/installers",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "ae73c5dfec9279bd4c35a49a49fcb6568aa8aba4"
+                "reference": "c568b9567deda672098b7adb7910c63f8bb278e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/ae73c5dfec9279bd4c35a49a49fcb6568aa8aba4",
-                "reference": "ae73c5dfec9279bd4c35a49a49fcb6568aa8aba4",
+                "url": "https://api.github.com/repos/composer/installers/zipball/c568b9567deda672098b7adb7910c63f8bb278e3",
+                "reference": "c568b9567deda672098b7adb7910c63f8bb278e3",
                 "shasum": ""
             },
             "require": {
@@ -63,6 +63,7 @@
                 "Hurad",
                 "ImageCMS",
                 "Kanboard",
+                "Lan Management System",
                 "MODX Evo",
                 "Mautic",
                 "Maya",
@@ -102,6 +103,7 @@
                 "mediawiki",
                 "modulework",
                 "moodle",
+                "osclass",
                 "phpbb",
                 "piwik",
                 "ppi",
@@ -118,7 +120,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2017-06-07T10:23:00+00:00"
+            "time": "2017-07-06T12:31:10+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -245,7 +247,7 @@
         },
         {
             "name": "jjgrainger/posttypes",
-            "version": "dev-master",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jjgrainger/PostTypes.git",
@@ -338,7 +340,7 @@
         },
         {
             "name": "wpupdatephp/wp-update-php",
-            "version": "dev-master",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WPupdatePHP/wp-update-php.git",
@@ -364,19 +366,17 @@
                 "GPL-2.0+"
             ],
             "description": "Library to be bundled with WordPress plugins to enforce users to upgrade to PHP 5.4 hosting",
-            "time": "2017-03-08 09:50:34"
+            "time": "2017-03-08T09:50:34+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "wpupdatephp/wp-update-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }

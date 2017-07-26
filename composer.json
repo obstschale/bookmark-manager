@@ -35,13 +35,13 @@
       }
   ],
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.0",
     "mnsami/composer-custom-directory-installer": "*",
     "htmlburger/carbon-fields": "1.5",
-    "jjgrainger/posttypes": "*",
+    "jjgrainger/posttypes": "^1.1",
     "jashkenas/underscore": ">=1.8.0",
     "composer/installers": "*",
-    "wpupdatephp/wp-update-php": "dev-master"
+    "wpupdatephp/wp-update-php": "^1.1"
   },
   "extra":{
     "installer-paths":{
@@ -58,5 +58,7 @@
       "pre-autoload-dump": [
         "rm -rf vendor/carbon-fields/.git*; rm -rf vendor/composer/installers/.git*; rm -rf vendor/jjgrainger/posttypes/.git*"
       ]
+  },
+  "require-dev": {
   }
 }

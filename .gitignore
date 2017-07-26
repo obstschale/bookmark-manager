@@ -134,3 +134,6 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/node,composer,phpstorm
+
+mix-manifest.json
+bookmark-this.min.js

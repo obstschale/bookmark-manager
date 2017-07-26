@@ -108,7 +108,7 @@ class Bookmarklet_Field extends Field
     public function bookmarklet_code()
     {
         $src = @file_get_contents( BookmarkManager::plugin_path() . 'public/js/bookmark-this.js' );
-        //$src = @file_get_contents( BookmarkManager::plugin_path() . 'resources/assets/js/bookmarklet/bookmark-this.min.js' );
+        //$src = @file_get_contents( BookmarkManager::plugin_path() . 'resources/js/bookmarklet/bookmark-this.min.js' );
 
         // WordPress base url can differ from plugins URL. We have to transmit it
         // to be able to call AJAX or the REST API

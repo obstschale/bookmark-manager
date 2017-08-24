@@ -43,8 +43,8 @@
     }
 
 
-    windowWidth = 750;
-    windowHeight = 360;
+    windowWidth = 800;
+    windowHeight = 520;
 
     if (!canPost) {
         window.open(bt_url, target, 'location,resizable,scrollbars,width=' + windowWidth + ',height=' + windowHeight);

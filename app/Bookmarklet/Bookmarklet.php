@@ -147,29 +147,83 @@ class Bookmarklet
 
 <div id="app">
 
-    <p v-if="updateBookmarklet">
-        <?php echo sprintf( __( "You're using an old bookmarklet. Grab the new one on <a href='%s' target='_blank' titel='Settings'>Settings</a>.", 'bookmark-manager' ), admin_url( 'edit.php?post_type=bookmarks&page=crbn-settings.php' ) ); ?>
-    </p>
+    <section class="hero is-info">
+        <div class="hero-head">
+            <div class="container">
+                <h1 class="title">
+                    <?php _e( 'Bookmark Manager', 'bookmark-manager' ); ?>
+                </h1>
+            </div>
+        </div>
+    </section>
 
-    <p id="flash" :class="flash" v-if="notice">{{ notice }}</p>
+    <div id="form">
+        <p v-if="updateBookmarklet">
+            <?php echo sprintf( __( "You're using an old bookmarklet. Grab the new one on <a href='%s' target='_blank' titel='Settings'>Settings</a>.", 'bookmark-manager' ), admin_url( 'edit.php?post_type=bookmarks&page=crbn-settings.php' ) ); ?>
+        </p>
 
-    <label for="title"><?php _e( 'Title', 'bookmark-manager' ); ?></label>
-    <input type="text" name="title" v-model="title">
+        <p id="flash" :class="flash" v-if="notice">{{ notice }}</p>
 
-    <label for="url"><?php _e( 'URL', 'bookmark-manager' ); ?></label>
-    <input type="text" name="url" v-model="url">
+        <div class="field">
+            <label class="label" for="title"><?php _e( 'Title', 'bookmark-manager' ); ?></label>
+            <div class="control">
+                <input class="input" type="text" name="title" v-model="title">
+            </div>
+        </div>
 
-    <label for="description"><?php _e( 'Description', 'bookmark-manger' ); ?></label>
-    <textarea name="description" id="description" cols="30" rows="10" v-model="description"></textarea>
+        <div class="field">
+            <label class="label" for="url"><?php _e( 'URL', 'bookmark-manager' ); ?></label>
+            <div class="control">
+                <input class="input" type="text" name="url" v-model="url">
+            </div>
+        </div>
 
-    <label for="tags"><?php _e( 'Tags', 'bookmark-manager' ); ?></label>
-    <input type="text" name="tags" v-model="tags">
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <label class="label" for="description"><?php _e( 'Description', 'bookmark-manger' ); ?></label>
+                    <div class="control">
+                        <textarea class="textarea" name="description" id="description" cols="30" v-model="description"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+
+                <div class="field">
+                    <label class="label" for="tags"><?php _e( 'Tags', 'bookmark-manager' ); ?></label>
+                    <div class="control">
+                        <input class="input" type="text" name="tags" placeholder="Search for tags ..." v-model="newTag" @keyup="watchTag">
+                    </div>
+                </div>
+
+                <tag-list></tag-list>
+
+                <div class="field">
+                    <label class="label" for="private"><?php _e( 'Private', 'bookmark-manager' ); ?></label>
+                    <div class="control">
+                        <input class="checkbox" type="checkbox" name="private" v-model="private">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="button is-primary" :class="{ 'is-loading': isLoading }" v-on:click="saveBookmark" :disabled="notice !== ''"><?php _e( 'Save Bookmark', 'bookmark-manager' ); ?></button>
+
+    </div>
 
 
-    <label for="private"><?php _e( 'Private', 'bookmark-manager' ); ?></label>
-    <input type="checkbox" name="private" v-model="private">
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Bookmark Manager</strong> Version {{ version }}
+            </div>
+        </div>
+    </footer>
 
-    <button v-on:click="saveBookmark" :disabled="notice !== ''"><?php _e( 'Save Bookmark', 'bookmark-manager' ); ?></button>
 </div>
 
 <?php

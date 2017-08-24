@@ -1,6 +1,13 @@
-#app input,
-#app textarea {
-  width: 100%;
+section.hero {
+  margin-bottom: 1em;
+}
+
+section.hero .hero-head {
+  padding: 1em;
+}
+
+#form {
+  margin: 0.5em;
 }
 
 #flash {
@@ -14,4 +21,8 @@
 
 .error {
   background: #ea0f0f;
+}
+
+.footer {
+  padding: 1rem 1rem;
 }

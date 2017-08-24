@@ -7,7 +7,7 @@ use BookmarkManager\BookmarkManager;
 class Bookmarklet
 {
 
-    protected static $version = 1;
+    protected static $version = 2;
 
 
     public function __construct()

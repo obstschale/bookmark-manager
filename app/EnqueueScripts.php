@@ -40,6 +40,9 @@ class EnqueueScripts extends BookmarkManager
     {
 
         # Enqueue JS
+        /**
+         * @TODO register script only and enqueue it in admin class
+         */
         wp_enqueue_script( 'carbon-field-bookmarklet-field', BookmarkManager::plugin_url() . 'public/js/admin.js',
             [ 'carbon-fields' ] );
 
@@ -47,10 +50,15 @@ class EnqueueScripts extends BookmarkManager
             [], '1.0', true );
 
         # Enqueue CSS
+        /**
+         * @TODO register style only and enqueue it in admin class
+         */
         wp_enqueue_style( 'bookmark-manager-admin-style', BookmarkManager::plugin_url() . 'public/css/admin.css' );
 
+        wp_register_style( 'bulma', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css', [], '0.5.1' );
+
         wp_register_style( 'bookmark-manager-bookmarklet-style',
-            BookmarkManager::plugin_url() . 'public/css/bookmarklet.css', [], '1.0' );
+                BookmarkManager::plugin_url() . 'public/css/bookmarklet.css', [ 'bulma' ], '1.0' );
 
     }
 

@@ -33,21 +33,22 @@
 
     bt_url += '&buster=' + ( new Date().getTime() );
 
+    if ( ! canPost ) {
+        if (document.title) {
+            bt_url += '&t=' + encURI(document.title.substr(0, 256));
+        }
 
-    if (document.title) {
-        bt_url += '&t=' + encURI(document.title.substr(0, 256));
+        if (selection) {
+            bt_url += '&s=' + encURI(selection.substr(0, 512));
+        }
     }
-
-    if (selection) {
-        bt_url += '&s=' + encURI(selection.substr(0, 512));
-    }
-
 
     windowWidth = 800;
     windowHeight = 520;
 
     if (!canPost) {
         window.open(bt_url, target, 'location,resizable,scrollbars,width=' + windowWidth + ',height=' + windowHeight);
+        console.log('hi');
         return;
     }
 

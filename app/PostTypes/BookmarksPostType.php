@@ -3,8 +3,8 @@
 namespace BookmarkManager\PostTypes;
 
 use PostTypes\PostType;
-use Carbon_Fields\Field;
 use Carbon_Fields\Container;
+use Carbon_Fields\Field;
 use BookmarkManager\BookmarkManager;
 
 class BookmarksPostType extends BookmarkManager
@@ -14,6 +14,13 @@ class BookmarksPostType extends BookmarkManager
      * @var PostType
      */
     public $cpt = null;
+
+    /**
+     * Custom Post Type slug
+     *
+     * @var string
+     */
+    public static $name = 'bookmarks';
 
 
     public function __construct()
@@ -49,7 +56,7 @@ class BookmarksPostType extends BookmarkManager
         ];
 
         $this->cpt = new PostType( [
-            'name'     => 'bookmarks',
+            'name'     => self::$name,
             'singular' => 'Bookmark',
             'plural'   => 'Bookmarks',
             'slug'     => 'bookmarks'

@@ -6,7 +6,7 @@ use BookmarkManager\Admin\AdminFooter;
 use BookmarkManager\Settings\Settings;
 use BookmarkManager\Widgets\WidgetLoader;
 use BookmarkManager\PostTypes\BookmarksPostType;
-use BookmarkManager\REST\REST_Bookmarks_Controller;
+use BookmarkManager\REST\v1\Bookmarks_Controller;
 
 class BookmarkManager
 {
@@ -54,8 +54,10 @@ class BookmarkManager
         // Edit Admin Footer Text
         new AdminFooter();
 
-        $rest = new REST_Bookmarks_Controller();
-        $rest->register();
+        add_action( 'rest_api_init', function() {
+            $controller = new Bookmarks_Controller();
+            $controller->register_routes();
+        });
 
     }
 

@@ -26,6 +26,8 @@ class BookmarksPostType extends BookmarkManager
     public function __construct()
     {
 
+        add_filter( 'post_row_actions', [ $this, 'open_bookmark_action' ], 10, 2 );
+
         // Sample Custom Post Type - Client
         $this->add_bookmarks_post_type();
         $this->add_meta_fields();
@@ -120,6 +122,21 @@ class BookmarksPostType extends BookmarkManager
         ];
         register_meta( $object_type, '_' . $meta_key, $args1 );
 
+    }
+
+
+    public function open_bookmark_action($actions, $post)
+    {
+        if ( $post->post_type == self::$name ) {
+            $url = carbon_get_the_post_meta( self::$prefix . 'link' );
+            $actions['open_bookmark'] = sprintf(
+                __( '<a href="%1$s" title="%2$s">Open Bookmark</a>', 'bookmark-manager' ),
+                    esc_url( $url ),
+                    $post->post_title
+            );
+        }
+
+        return $actions;
     }
 
 }

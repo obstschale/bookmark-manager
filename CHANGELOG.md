@@ -1,5 +1,12 @@
 # Changelog
 
+### Upcoming
+
+* [Feature] Save tags from bookmarklet #14
+* [Enhancement] New GUI for bookmarklet #21 (Bookmarklet v2)
+* [Enhancement] Waiting indicator while saving bookmark in bookmarklet #20
+* [Fix] Bookmarklet uses `void` to fix #17 (Bookmarklet v3)
+
 ### v0.1.1 - 2017-06-26
 
 * [Fix] Require `wp-admin/includes/screen.php` for get_current_screen() function otherwise a fatal error occurs. #16

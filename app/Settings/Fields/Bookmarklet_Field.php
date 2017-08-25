@@ -117,7 +117,7 @@ class Bookmarklet_Field extends Field
         if ( $src ) {
             $url  = wp_json_encode( BookmarkManager::plugin_url() . 'app/Bookmarklet/BookmarkThis.php?v=' . Bookmarklet::version() );
             $src = str_replace( 'window.bt_base', $base, $src );
-            $link = 'javascript:' . str_replace( 'window.bt_url', $url, $src );
+            $link = 'javascript:void' . str_replace( 'window.bt_url', $url, $src );
         }
 
         $link = str_replace( [ "\r", "\n", "\t" ], '', $link );

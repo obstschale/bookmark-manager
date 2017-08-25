@@ -2,12 +2,10 @@
 
 namespace BookmarkManager\Bookmarklet;
 
-use BookmarkManager\BookmarkManager;
-
 class Bookmarklet
 {
 
-    protected static $version = 2;
+    protected static $version = 3;
 
 
     public function __construct()

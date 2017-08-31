@@ -60,5 +60,6 @@
       ]
   },
   "require-dev": {
+    "phpunit/phpunit": "^6.4@dev"
   }
 }

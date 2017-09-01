@@ -2,6 +2,13 @@
 
 namespace BookmarkManager\Models;
 
+/**
+ * Bookmark Model.
+ *
+ * @since 0.2.0
+ *
+ * @package BookmarkManager\Models
+ */
 class Bookmark
 {
 

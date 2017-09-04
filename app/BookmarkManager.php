@@ -39,8 +39,6 @@ class BookmarkManager
         // Enqueue scripts
         new EnqueueScripts();
 
-        // Core plugin logic
-        new Core();
 
         // Add admin settings page(s)
         new Settings();

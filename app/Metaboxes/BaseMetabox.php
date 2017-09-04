@@ -36,7 +36,7 @@ abstract class BaseMetabox implements Service
      *
      * @return string Metabox's ID.
      */
-    abstract protected function get_id() : string;
+    abstract public function get_id() : string;
 
 
     /**

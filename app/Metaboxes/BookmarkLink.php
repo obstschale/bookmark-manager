@@ -13,7 +13,7 @@ use BookmarkManager\PostTypes\Bookmarks;
  *
  * @package BookmarkManager\Metaboxes
  */
-class Bookmark extends BaseMetabox
+class BookmarkLink extends BaseMetabox
 {
 
     const ID = 'bookmark_manager_link';
@@ -42,7 +42,7 @@ class Bookmark extends BaseMetabox
      *
      * @return string Metabox's ID.
      */
-    protected function get_id() : string
+    public function get_id() : string
     {
         return self::ID;
     }

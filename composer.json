@@ -36,12 +36,10 @@
   ],
   "require": {
     "php": ">=7.0",
-    "mnsami/composer-custom-directory-installer": "*",
-    "htmlburger/carbon-fields": "1.5",
-    "jjgrainger/posttypes": "^1.1",
-    "jashkenas/underscore": ">=1.8.0",
     "composer/installers": "*",
-    "wpupdatephp/wp-update-php": "^1.1"
+    "htmlburger/carbon-fields": "^2.0.4",
+    "jjgrainger/posttypes": "^1.1",
+    "mnsami/composer-custom-directory-installer": "*"
   },
   "extra":{
     "installer-paths":{

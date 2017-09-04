@@ -32,7 +32,7 @@ class Bookmarks extends BaseCustomPostType
         /**
          * Make new post type object available for other classes to add additional features,
          * like taxonomies or metaboxes.
-         * 
+         *
          * @since 0.2.0
          */
         do_action( 'bookmark_manager.after_bookmark_post_type_registered', $this->post_type );
@@ -46,7 +46,7 @@ class Bookmarks extends BaseCustomPostType
      *
      * @return string Bookmark post type slug.
      */
-    protected function get_slug() : string
+    public function get_slug() : string
     {
         return self::SLUG;
     }
@@ -77,7 +77,7 @@ class Bookmarks extends BaseCustomPostType
      *
      * @return string Custom post type name.
      */
-    protected function get_name() : string
+    public function get_name() : string
     {
         return self::NAME;
     }

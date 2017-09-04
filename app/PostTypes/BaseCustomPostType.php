@@ -57,7 +57,7 @@ abstract class BaseCustomPostType implements Service
      *
      * @return string
      */
-    abstract protected function get_name() : string;
+    abstract public function get_name() : string;
 
 
     /**
@@ -67,7 +67,7 @@ abstract class BaseCustomPostType implements Service
      *
      * @return string Custom post type slug.
      */
-    abstract protected function get_slug() : string;
+    abstract public function get_slug() : string;
 
 
     /**

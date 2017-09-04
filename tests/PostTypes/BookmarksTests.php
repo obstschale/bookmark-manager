@@ -1,9 +1,12 @@
 <?php
 
-namespace BookmarkManager\Tests\PostTypes;
+namespace BookmarkManager\PostTypes;
 
-use BookmarkManager\PostTypes\Bookmarks;
-
+/**
+ * Class BookmarksTests
+ *
+ * @package BookmarkManager\PostTypes
+ */
 class BookmarksTests extends \WP_UnitTestCase
 {
 
@@ -12,10 +15,12 @@ class BookmarksTests extends \WP_UnitTestCase
      */
     protected $bookmarks;
 
+
     public function setUp()
     {
         $this->bookmarks = new Bookmarks();
     }
+
 
     public function test_check_name()
     {

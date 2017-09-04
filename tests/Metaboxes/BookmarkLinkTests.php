@@ -2,19 +2,25 @@
 
 namespace BookmarkManager\Metaboxes;
 
-use BookmarkManager\Metaboxes\BookmarkLink;
-
+/**
+ * Class BookmarkLinkTests
+ *
+ * @package BookmarkManager\Metaboxes
+ */
 class BookmarkLinkTests extends \WP_UnitTestCase
 {
+
     /**
      * @var BookmarkLink
      */
     protected $meta_field;
 
+
     public function setUp()
     {
         $this->meta_field = new BookmarkLink();
     }
+
 
     public function test_id_name()
     {

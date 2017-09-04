@@ -2,18 +2,25 @@
 
 namespace BookmarkManager\Taxonomies;
 
-
+/**
+ * Class BookmarkTagsTests
+ *
+ * @package BookmarkManager\Taxonomies
+ */
 class BookmarkTagsTests extends \WP_UnitTestCase
 {
+
     /**
      * @var BookmarkTags
      */
     protected $bookmark_tags;
 
+
     public function setUp()
     {
         $this->bookmark_tags = new BookmarkTags();
     }
+
 
     public function test_check_name()
     {

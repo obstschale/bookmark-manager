@@ -41,23 +41,13 @@
     "jjgrainger/posttypes": "^1.1",
     "mnsami/composer-custom-directory-installer": "*"
   },
-  "extra":{
-    "installer-paths":{
-      "./vendor/carbon-fields": ["htmlburger/carbon-fields"]
-    }
+  "require-dev": {
+    "phpunit/phpunit": "^6.4@dev"
   },
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "BookmarkManager\\": "app/"
     }
-  },
-  "scripts": {
-      "pre-autoload-dump": [
-        "rm -rf vendor/carbon-fields/.git*; rm -rf vendor/composer/installers/.git*; rm -rf vendor/jjgrainger/posttypes/.git*"
-      ]
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^6.4@dev"
   }
 }

@@ -1,8 +1,13 @@
 <?php
 
-use BookmarkManager\Models\Bookmark;
+namespace BookmarkManager\Models;
 
-class BookmarksTests extends WP_UnitTestCase
+/**
+ * Class BookmarksTests
+ *
+ * @package BookmarkManager\Models
+ */
+class BookmarksTests extends \WP_UnitTestCase
 {
 
     /**
@@ -67,7 +72,7 @@ class BookmarksTests extends WP_UnitTestCase
         $this->assertEquals( [], $bookmarks, 'There should be no bookmark in database, yet.' );
 
         $expected_link = 'http://example.com';
-        $expected = $this->factory->post->create_and_get( [
+        $expected      = $this->factory->post->create_and_get( [
             'post_type'  => 'bookmarks',
             'meta_input' => [
                 'bookmark_manager_link' => $expected_link

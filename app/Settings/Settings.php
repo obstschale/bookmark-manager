@@ -2,11 +2,15 @@
 
 namespace BookmarkManager\Settings;
 
+use BookmarkManager\PostTypes\Bookmarks;
+use BookmarkManager\Service;
+use BookmarkManager\Settings\Fields\Number_Field;
 use Carbon_Fields\Field;
 use Carbon_Fields\Container;
+use Carbon_Fields\Carbon_Fields;
 use BookmarkManager\BookmarkManager;
 
-class Settings extends BookmarkManager
+class Settings implements Service
 {
 
     /**
@@ -16,16 +20,31 @@ class Settings extends BookmarkManager
      */
     public $container;
 
+    public static $prefix = 'bookmark_manager_';
+
 
     /**
      * Create a options/settings page in WP Admin
      */
-    public function __construct()
+    public function register()
     {
-        include_once dirname(__FILE__) . '/Fields/Bookmarklet_Field.php';
+        add_action( 'after_setup_theme', function () {
+            Carbon_Fields::boot();
 
-        $this->container = Container::make( 'theme_options',
-            __( 'Settings', 'bookmark-manager' ) )->set_page_parent( 'edit.php?post_type=bookmarks' );
+            //define( 'Carbon_Field_Number\\DIR', __DIR__ );
+            Carbon_Fields::extend( Number_Field::class, function ( $container ) {
+                return new Number_Field( $container[ 'arguments' ][ 'type' ],
+                    $container[ 'arguments' ][ 'name' ], $container[ 'arguments' ][ 'label' ] );
+            } );
+        } );
+        add_action( 'carbon_fields_register_fields', [ $this, 'register_fields' ] );
+    }
+
+
+    public function register_fields()
+    {
+        $this->container = Container::make( 'theme_options', __( 'Settings', 'bookmark-manager' ) )
+            ->set_page_parent( 'edit.php?post_type=' . Bookmarks::NAME );
 
         $this->add_settings_tabs();
         $this->add_paparazzo_tab();
@@ -40,14 +59,15 @@ class Settings extends BookmarkManager
     public function add_settings_tabs()
     {
         $this->container->add_tab( __( 'General' ), [
-            Field::make( 'bookmarklet', self::$prefix . 'bookmarklet'),
+            //Field::make( 'bookmarklet', self::$prefix . 'bookmarklet' ),
+            Field::make( 'number', self::$prefix . 'bookmarklet' ),
         ] );
     }
 
 
     public function add_paparazzo_tab()
     {
-        if ( ! $this->is_production() ) {
+        if ( ! BookmarkManager::is_production() ) {
             $this->container->add_tab( __( 'Paparazzo', 'bookmark-manager' ), [
                 Field::make( 'text', self::$prefix . 'paparazzo', 'Paparazzo API' ),
             ] );
@@ -57,7 +77,7 @@ class Settings extends BookmarkManager
 
     public function add_debug_tab()
     {
-        if ( isset( $_GET[ 'debug' ] ) || ! $this->is_production() ) {
+        if ( isset( $_GET[ 'debug' ] ) || ! BookmarkManager::is_production() ) {
             $this->container->add_tab( __( 'Debug', 'bookmark-manager' ), [
                 Field::make( 'textarea', self::$prefix . 'debug', 'DEBUG INFOS' ),
             ] );

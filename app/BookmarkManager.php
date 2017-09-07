@@ -106,7 +106,7 @@ class BookmarkManager implements Registerable
      *
      * @return bool
      */
-    public function is_production()
+    public static function is_production()
     {
         if ( ! defined( 'WP_ENV' ) ) {
             return true;

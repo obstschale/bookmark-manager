@@ -25,6 +25,7 @@ mix.js('resources/js/bookmarklet/app.js', 'public/js/bookmarklet.js')
 /** The actual bookmarklet script */
 mix.minify('resources/js/bookmarklet/bookmark-this.js')
     .copy('resources/js/bookmarklet/bookmark-this.min.js', 'public/js/bookmark-this.js');
+mix.js('resources/js/bookmarklet/bookmark-this-toggle.js', 'public/js/bookmark-this-toggle.js');
 
 /** Carbon Field */
 mix.sass('resources/scss/carbon-fields/field.scss', 'public/css/field.css');

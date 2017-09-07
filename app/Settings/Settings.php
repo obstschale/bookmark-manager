@@ -2,13 +2,13 @@
 
 namespace BookmarkManager\Settings;
 
-use BookmarkManager\PostTypes\Bookmarks;
-use BookmarkManager\Service;
-use BookmarkManager\Settings\Fields\Number_Field;
 use Carbon_Fields\Field;
+use BookmarkManager\Service;
 use Carbon_Fields\Container;
 use Carbon_Fields\Carbon_Fields;
 use BookmarkManager\BookmarkManager;
+use BookmarkManager\PostTypes\Bookmarks;
+use BookmarkManager\Settings\Fields\Bookmarklet_Field;
 
 class Settings implements Service
 {
@@ -31,15 +31,20 @@ class Settings implements Service
         add_action( 'after_setup_theme', function () {
             Carbon_Fields::boot();
 
-            //define( 'Carbon_Field_Number\\DIR', __DIR__ );
-            Carbon_Fields::extend( Number_Field::class, function ( $container ) {
-                return new Number_Field( $container[ 'arguments' ][ 'type' ],
+            Carbon_Fields::extend( Bookmarklet_Field::class, function ( $container ) {
+                return new Bookmarklet_Field( $container[ 'arguments' ][ 'type' ],
                     $container[ 'arguments' ][ 'name' ], $container[ 'arguments' ][ 'label' ] );
             } );
         } );
         add_action( 'carbon_fields_register_fields', [ $this, 'register_fields' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
     }
 
+
+    public function enqueue_scripts( $hook_suffix )
+    {
+        wp_enqueue_script( 'bookmark-manager-bookmarklet-toggle' );
+    }
 
     public function register_fields()
     {
@@ -59,8 +64,7 @@ class Settings implements Service
     public function add_settings_tabs()
     {
         $this->container->add_tab( __( 'General' ), [
-            //Field::make( 'bookmarklet', self::$prefix . 'bookmarklet' ),
-            Field::make( 'number', self::$prefix . 'bookmarklet' ),
+            Field::make( 'bookmarklet', self::$prefix . 'bookmarklet' ),
         ] );
     }
 

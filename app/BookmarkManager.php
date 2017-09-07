@@ -36,6 +36,7 @@ class BookmarkManager implements Registerable
         self::$prefix   = $_settings[ 'prefix' ];
 
         //$this->enqueue_scripts = $enqueue_scripts;
+        new EnqueueScripts();
 
         // Add admin settings page(s)
         //new Settings();
@@ -54,6 +55,7 @@ class BookmarkManager implements Registerable
 
     private static function load_registry()
     {
+        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
         self::$registry = [
             'data'                => get_plugin_data( dirname( dirname( __FILE__ ) ) . '/bookmark-manager.php' ),
             'plugin_url'          => plugin_dir_url( dirname( __FILE__ ) . 'bookmark-manager.php' ),

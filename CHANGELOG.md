@@ -8,6 +8,7 @@
 * [Fix] Bookmarklet uses `void` to fix #17 (Bookmarklet v3)
 * [Refactor] Split post type, metabox, and taxonomy in their own classes
 * [Fix] Update carbon fields and fix bookmarklet field to work with version 2
+* [Fix] Composer packages require now php ^7.0 instead of ^7.1
 
 ### v0.1.1 - 2017-06-26
 

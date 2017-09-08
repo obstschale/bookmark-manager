@@ -6,6 +6,8 @@
 * [Enhancement] New GUI for bookmarklet #21 (Bookmarklet v2)
 * [Enhancement] Waiting indicator while saving bookmark in bookmarklet #20
 * [Fix] Bookmarklet uses `void` to fix #17 (Bookmarklet v3)
+* [Refactor] Split post type, metabox, and taxonomy in their own classes
+* [Fix] Update carbon fields and fix bookmarklet field to work with version 2
 
 ### v0.1.1 - 2017-06-26
 

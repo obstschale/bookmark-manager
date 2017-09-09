@@ -10,6 +10,15 @@ php:
   - 7.1
   - nightly
 
+env:
+  - WP_MULTISITE=0
+  - WP_MULTISITE=1
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: nightly
+
 before_install:
   - bash bin/install-wp-tests.sh test root '' 127.0.0.1 latest
   - composer install --no-interaction

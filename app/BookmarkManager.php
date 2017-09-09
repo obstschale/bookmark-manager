@@ -3,6 +3,7 @@
 namespace BookmarkManager;
 
 use BookmarkManager\Metaboxes;
+use BookmarkManager\Migrations\MigrationService;
 use BookmarkManager\PostTypes;
 use BookmarkManager\Taxonomies;
 use BookmarkManager\Admin\AdminFooter;
@@ -159,6 +160,7 @@ class BookmarkManager implements Registerable
     private function get_services() : array
     {
         return [
+            MigrationService::class,
             Taxonomies\BookmarkTags::class,
             Metaboxes\BookmarkLink::class,
             PostTypes\Bookmarks::class,

@@ -1,7 +1,9 @@
 # Changelog
 
-### Upcoming
+#### Upcoming
 
+* [Feature] Open bookmark from list view #19 *2017-09-09*
+* [Enhancement] Add Taskrunner Robo to project #28 *2017-09-09*
 * [Feature] Save tags from bookmarklet #14
 * [Enhancement] New GUI for bookmarklet #21 (Bookmarklet v2)
 * [Enhancement] Waiting indicator while saving bookmark in bookmarklet #20
@@ -10,11 +12,11 @@
 * [Fix] Update carbon fields and fix bookmarklet field to work with version 2
 * [Fix] Composer packages require now php ^7.0 instead of ^7.1
 
-### v0.1.1 - 2017-06-26
+#### v0.1.1 - 2017-06-26
 
 * [Fix] Require `wp-admin/includes/screen.php` for get_current_screen() function otherwise a fatal error occurs. #16
 
-### v0.1.0 - 2017-06-26
+#### v0.1.0 - 2017-06-26
 
 *First basic beta version*
 

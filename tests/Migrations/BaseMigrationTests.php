@@ -2,7 +2,7 @@
 
 namespace BookmarkManager\Migrations;
 
-class BaseMigrationTests extends \PHPUnit_Framework_Test
+class BaseMigrationTests extends \WP_UnitTestCase
 {
 
     /**

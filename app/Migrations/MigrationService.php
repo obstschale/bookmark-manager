@@ -34,7 +34,7 @@ class MigrationService implements Service
      */
     public function register()
     {
-        add_action( 'init', [ $this, 'migrate' ] );
+        add_action( 'init', [ $this, 'migrate' ], 5 );
     }
 
 

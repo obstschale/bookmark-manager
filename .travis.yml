@@ -11,7 +11,7 @@ php:
   - nightly
 
 before_install:
-  - bash bin/install-wp-tests.sh test $MYSQL_USER $MYSQL_PASSWORD localhost latest
+  - bash bin/install-wp-tests.sh test $MYSQL_USER '$MYSQL_PASSWORD' localhost latest
   - composer install --no-interaction
 
 script:

@@ -118,6 +118,9 @@ install_db() {
 		fi
 	fi
 
+	echo $EXTRA
+	echo $DB_HOSTNAME
+	
 	# create database
 	mysqladmin drop $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA --force
 	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA

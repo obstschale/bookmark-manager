@@ -2,6 +2,7 @@
 
 #### Upcoming
 
+* [Enhancement] Change post type to 'bookmark'. Migration will change all posts *2017-09-09*
 * [Feature] Open bookmark from list view #19 *2017-09-09*
 * [Enhancement] Add Taskrunner Robo to project #28 *2017-09-09*
 * [Feature] Save tags from bookmarklet #14

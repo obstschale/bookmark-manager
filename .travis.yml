@@ -13,6 +13,10 @@ php:
 env:
   - WP_MULTISITE=0
   - WP_MULTISITE=1
+  - WP_VERSION=4.6
+  - WP_VERSION=4.7
+  - WP_VERSION=4.8
+  - WP_VERSION=latest
 
 matrix:
   fast_finish: true
@@ -20,7 +24,7 @@ matrix:
     - php: nightly
 
 before_install:
-  - bash bin/install-wp-tests.sh test root '' 127.0.0.1 latest
+  - bash bin/install-wp-tests.sh test root '' 127.0.0.1 $WP_VERSION
   - composer install --no-interaction
 
 script:

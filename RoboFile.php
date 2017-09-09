@@ -9,12 +9,69 @@ class RoboFile extends \Robo\Tasks
 {
 
     /**
+     * Release Bookmark Manager.
+     */
+    public function releaseCommit()
+    {
+        /**
+         * PREREQUISITES
+         */
+        $this->io()->title( 'Check the prerequisites' );
+        $version = \BookmarkManager\BookmarkManager::VERSION;
+        $this->say( 'Check if version does not already exist.' );
+        $git_tags = $this->taskExecStack()
+            ->exec( 'git tag | grep -c v' . $version )
+            ->printOutput( false )
+            ->run();
+
+        if ( $git_tags->wasSuccessful() && $git_tags->getMessage() !== 0 ) {
+            $message = "It seems there already exists a version for " . $version . "\n";
+            $message .= "Please bump the version first! [robo version:bump]";
+            $this->io()->error( $message );
+
+            return;
+        }
+
+        /**
+         * RELEASE
+         */
+        $this->io()->title( 'Release new Version' );
+        $this->yell( "Releasing Bookmark Manager $version" );
+
+        $this->updateChangelog( $version );
+
+        $git = $this->taskGitStack()
+            ->checkout( 'develop' )
+            ->add( 'app/BookmarkManager.php bookmark-manager.php CHANGELOG.md' )
+            ->commit( "BookmarkManager release $version" )
+            ->pull()
+            ->push()
+            ->run();
+
+        if ( ! $git->wasSuccessful() ) {
+            $message = "Make sure your working directory points to 'develop'.";
+            $this->io()->error( $message );
+
+            return;
+        }
+
+        $this->taskGitStack()
+            ->stopOnFail()
+            ->checkout( 'master' )
+            ->merge( "develop --no-ff -m 'Release version {$version}'" )
+            ->push()
+            ->tag( 'v' . $version )
+            ->push( 'origin master --tags' )
+            ->run();
+    }
+
+
+    /**
      * Update changelog.
      *
      * Add an entry to the Bookmark Manager CHANGELOG.md file.
      *
      * @param string $addition The text to add to the change log.
-     *
      * @param array  $options
      *
      * @option type Type of change is prepended on text. Available shortcuts are:
@@ -52,9 +109,8 @@ class RoboFile extends \Robo\Tasks
      * Update the version of Bookmark Manager.
      *
      * @param string $version The new verison for plugin.
-     *                        Defaults to the next minor (bugfix) version after the current
-     *                        relelase.
-     *
+     *                        Defaults to the next minor (bugfix) version
+     *                        after the current relelase.
      * @param array  $options
      *
      * @option stage The version stage: dev, alpha, beta or rc. Use empty for stable.

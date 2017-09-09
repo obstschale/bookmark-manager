@@ -2,6 +2,7 @@
 
 #### Upcoming
 
+* [Feature] Open bookmark from list view #19 *2017-09-09*
 * [Enhancement] Add Taskrunner Robo to project #28 *2017-09-09*
 * [Feature] Save tags from bookmarklet #14
 * [Enhancement] New GUI for bookmarklet #21 (Bookmarklet v2)

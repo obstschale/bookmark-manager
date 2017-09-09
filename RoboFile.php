@@ -9,6 +9,46 @@ class RoboFile extends \Robo\Tasks
 {
 
     /**
+     * Update changelog.
+     *
+     * Add an entry to the Bookmark Manager CHANGELOG.md file.
+     *
+     * @param string $addition The text to add to the change log.
+     *
+     * @param array  $options
+     *
+     * @option type Type of change is prepended on text. Available shortcuts are:
+     *              f => [Feature],
+     *              e => [Enhancement]
+     * @return \Robo\Result
+     */
+    public function changed(
+        $addition,
+        $options = [
+            'type|t' => '',
+        ]
+    ) {
+        switch ( $options[ 'type' ] ) {
+            case 'f':
+                $options[ 'type' ] = 'Feature';
+                break;
+
+            case 'e':
+                $options[ 'type' ] = 'Enhancement';
+                break;
+        }
+
+        if ( ! empty( $options[ 'type' ] ) ) {
+            $options[ 'type' ] = '[' . ucfirst( strtolower( $options[ 'type' ] ) ) . '] ';
+        }
+        $addition = $options[ 'type' ] . $addition;
+
+        return $this->taskChangelog()->version( 'Upcoming' )->change( $addition )->run();
+
+    }
+
+
+    /**
      * Update the version of Bookmark Manager.
      *
      * @param string $version The new verison for plugin.

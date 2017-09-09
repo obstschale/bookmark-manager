@@ -25,12 +25,16 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^6.3",
-    "doctrine/instantiator": "1.0.5"
+    "doctrine/instantiator": "1.0.5",
+    "consolidation/robo": "^1.1"
   },
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "BookmarkManager\\": "app/"
     }
+  },
+  "scripts": {
+    "robo": "robo --ansi"
   }
 }

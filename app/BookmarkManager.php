@@ -13,6 +13,7 @@ use BookmarkManager\REST\REST_Bookmarks_Controller;
 
 class BookmarkManager implements Registerable
 {
+    const VERSION = '0.1.1';
 
     public static $settings;
 

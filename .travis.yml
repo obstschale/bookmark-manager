@@ -1,0 +1,33 @@
+language: php
+
+sudo: false
+
+services:
+  - mysql
+
+php:
+  - 7.0.22
+  - 7.1
+  - nightly
+
+env:
+  - WP_VERSION=4.6 WP_MULTISITE=0
+  - WP_VERSION=4.6 WP_MULTISITE=1
+  - WP_VERSION=4.7 WP_MULTISITE=0
+  - WP_VERSION=4.7 WP_MULTISITE=1
+  - WP_VERSION=4.8 WP_MULTISITE=0
+  - WP_VERSION=4.8 WP_MULTISITE=1
+  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=latest WP_MULTISITE=1
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: nightly
+
+before_install:
+  - bash bin/install-wp-tests.sh test root '' 127.0.0.1 $WP_VERSION
+  - composer install --no-interaction
+
+script:
+  - vendor/bin/phpunit

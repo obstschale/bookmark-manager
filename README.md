@@ -1,6 +1,6 @@
 # Bookmark Manager
 
-[ ![Codeship Status for obstschale/bookmark-manager](https://app.codeship.com/projects/4a227700-3c83-0135-baef-327939c5f2be/status?branch=master)](https://app.codeship.com/projects/228889)
+[![Build Status](https://travis-ci.org/obstschale/bookmark-manager.svg?branch=master)](https://travis-ci.org/obstschale/bookmark-manager)
 
 	WordPress Plugin
 

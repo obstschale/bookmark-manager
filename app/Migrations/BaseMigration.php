@@ -123,7 +123,7 @@ abstract class BaseMigration
      *
      * @return bool Return true if migration needs to run, otherwise false.
      */
-    public function is_new()
+    public function is_new() : bool
     {
         return $this->get_current_version() < $this->get_version();
     }
@@ -145,7 +145,7 @@ abstract class BaseMigration
      *
      * @param int $version DB Version
      */
-    public function set_current_version( int $version ) : void
+    public function set_current_version( int $version )
     {
         $this->current_version = $version;
     }

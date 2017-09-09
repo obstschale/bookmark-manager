@@ -50,10 +50,8 @@ class MigrationService implements Service
      * Register the current Registerable.
      *
      * @since 0.2.0
-     *
-     * @return void
      */
-    public function register() : void
+    public function register()
     {
         add_action( 'init', [ $this, 'migrate' ], 5 );
     }
@@ -71,7 +69,7 @@ class MigrationService implements Service
      *
      * @since 0.2.0
      */
-    public function migrate() : void
+    public function migrate()
     {
         if ( $this->migration_needed() ) {
             $migration = $this->build_chain();

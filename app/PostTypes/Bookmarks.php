@@ -3,6 +3,7 @@
 namespace BookmarkManager\PostTypes;
 
 use PostTypes\PostType;
+use BookmarkManager\Metaboxes\BookmarkLink;
 
 /**
  * Bookmark Post Type class for setting up a new custom post type for bookmarks.
@@ -28,6 +29,8 @@ class Bookmarks extends BaseCustomPostType
 
         $this->post_type->translation( 'bookmark-manager' );
         $this->post_type->icon( 'dashicons-admin-links' );
+
+        add_filter( 'post_row_actions', [ $this, 'open_bookmark_action' ], 10, 2 );
 
         /**
          * Make new post type object available for other classes to add additional features,
@@ -116,4 +119,25 @@ class Bookmarks extends BaseCustomPostType
             'rest_controller_class' => 'WP_REST_Posts_Controller',
         ];
     }
+
+
+    /**
+     * Add a new action link to open the bookmark.
+     *
+     * @param array    $actions An array of row action links.
+     * @param \WP_Post $post    The post object.
+     *
+     * @return mixed
+     */
+    public function open_bookmark_action( $actions, $post )
+    {
+        if ( $post->post_type == self::NAME ) {
+            $url                        = carbon_get_the_post_meta( BookmarkLink::ID );
+            $actions[ 'open_bookmark' ] = sprintf( __( '<a href="%1$s" title="%2$s">Open Bookmark</a>',
+                'bookmark-manager' ), esc_url( $url ), $post->post_title );
+        }
+
+        return $actions;
+    }
+
 }

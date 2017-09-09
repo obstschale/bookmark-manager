@@ -11,7 +11,7 @@ php:
   - nightly
 
 before_install:
-  - bash bin/install-wp-tests.sh test $MYSQL_USER '$MYSQL_PASSWORD' 127.0.0.1:~travis/.my.cnf latest
+  - bash bin/install-wp-tests.sh test travis '' 127.0.0.1:~travis/.my.cnf latest
   - composer install --no-interaction
 
 script:
